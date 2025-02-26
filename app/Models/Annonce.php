@@ -64,13 +64,4 @@ class Post extends Model
         }
         return $query;
     }
-
-    // Scope pour filtrer par lieu
-    public function scopeInLocation($query, $location)
-    {
-        if ($location) {
-            return $query->where('location', 'like', "%{$location}%");
-        }
-        return $query;
-    }
 }
