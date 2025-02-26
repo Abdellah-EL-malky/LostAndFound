@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('annonces', function (Blueprint $table) {
+        Schema::create('commentaire', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->text('description');
-            $table->string('type'); // 'lost' ou 'found'
-            $table->string('category');
-            $table->string('location');
-            $table->date('date');
-            $table->string('image')->nullable();
-            $table->string('phone')->nullable();
+            $table->foreignId('annonce_id')->constrained()->onDelete('cascade');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('annonces');
+        Schema::dropIfExists('commentaire');
     }
 };
