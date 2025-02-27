@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class Post extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::all();
+        $annonces = Category::all();
         $type = $request->input('type');
         $search = $request->input('search');
         $categoryId = $request->input('category_id');
         $location = $request->input('location');
 
-        $posts = Post::query()
+        $user = Post::query()
             ->with(['user', 'category'])
             ->when($type, function ($query, $type) {
                 return $query->ofType($type);
@@ -32,7 +32,7 @@ class PostController extends Controller
         $totalPosts = Post::count();
         $popularPosts = Post::orderBy('views', 'desc')->take(5)->get();
 
-        return view('posts.index', compact('posts', 'categories', 'totalPosts', 'popularPosts'));
+        return view('posts.index', compact('user', 'annonces', 'totalPosts', 'popularPosts'));
     }
 
     public function create()
