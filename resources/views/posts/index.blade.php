@@ -8,26 +8,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <!-- Statistiques -->
-                <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-                    <h3 class="text-lg font-semibold mb-2">Statistiques</h3>
-                    <p>Nombre total d'annonces: <span class="font-bold">{{ $totalPosts }}</span></p>
-
-                    @if($popularPosts->count() > 0)
-                        <div class="mt-2">
-                            <h4 class="text-md font-semibold">Annonces populaires:</h4>
-                            <ul class="list-disc list-inside ml-4">
-                                @foreach($popularPosts as $post)
-                                    <li>
-                                        <a href="{{ route('posts.show', $post) }}" class="text-blue-500 hover:underline">
-                                            {{ $post->title }} ({{ $post->views }} vues)
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </div>
 
                 <!-- Filtres et recherche -->
                 <div class="mb-6">
