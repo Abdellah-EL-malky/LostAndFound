@@ -18,7 +18,7 @@ class PostController extends Controller
         $search = $request->input('search');
         $categoryId = $request->input('category_id');
         $location = $request->input('location');
-
+        $categories = Category::all();
         $posts = Post::query()
             ->with(['user', 'category'])
             ->when($type, function ($query, $type) {
@@ -31,9 +31,8 @@ class PostController extends Controller
             ->paginate(12);
 
         $totalPosts = Post::count();
-
-        return view('posts.index', compact('posts', 'annonces', 'totalPosts'));
+        $categories = Category::all();
+        return view('posts.index', compact('posts', 'annonces','categories', 'totalPosts'));
     }
 
-    // Les autres méthodes du contrôleur...
 }

@@ -3,6 +3,9 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+
+Route::resource('categories', CategoryController::class);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
